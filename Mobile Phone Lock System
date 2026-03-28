@@ -1,0 +1,61 @@
+import java.util.Scanner;
+class Mobile {
+    private int pin;
+    Mobile(int pin) {
+        this.pin = pin;
+    }
+    public boolean unlock(int inputPin) {
+        if (inputPin == pin) {
+            System.out.println("Phone Unlocked Successfully");
+            return true;
+        } else {
+            System.out.println("Incorrect PIN");
+            return false;
+        }
+    }
+    public void changePin(int oldPin, int newPin) {
+        if (oldPin == pin) {
+            pin = newPin;
+            System.out.println("PIN changed successfully");
+        } else {
+            System.out.println("Wrong old PIN");
+        }
+    }
+}
+public class MobilePhoneLockSystem {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Set initial PIN: ");
+        int initialPin = sc.nextInt();
+        Mobile phone = new Mobile(initialPin);
+        int choice;
+        do {
+            System.out.println("\n1. Unlock Phone");
+            System.out.println("2. Change PIN");
+            System.out.println("3. Exit");
+            System.out.print("Enter your choice: ");
+            choice = sc.nextInt();
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter PIN: ");
+                    int inputPin = sc.nextInt();
+                    phone.unlock(inputPin);
+                    break;
+                case 2:
+                    System.out.print("Enter Old PIN: ");
+                    int oldPin = sc.nextInt();
+                    System.out.print("Enter New PIN: ");
+                    int newPin = sc.nextInt();
+                    phone.changePin(oldPin, newPin);
+                    break;
+                case 3:
+                    System.out.println("Exiting...");
+                    break;
+                default:
+                    System.out.println("Invalid Choice");
+            }
+        } while (choice != 3);
+
+        sc.close();
+    }
+}
